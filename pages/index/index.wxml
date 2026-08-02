@@ -1,0 +1,39 @@
+<view class="page tech-bg index">
+  <view class="top">
+    <view class="brand">
+      <text class="brand-cn">职业游戏测评</text>
+      <text class="brand-en">PROFESSIONAL GAME ASSESSMENT</text>
+    </view>
+    <view class="btn-mute {{muted?'on':''}}" bindtap="toggleMute">{{muted?'静音':'音效'}}</view>
+  </view>
+
+  <view class="cards">
+    <view class="card panel" wx:for="{{levels}}" wx:key="id" data-index="{{index}}" bindtap="enterLevel">
+      <view class="card-top">
+        <text class="card-num">0{{index + 1}}</text>
+        <view class="icon {{item.icon}}">
+          <view class="blk b1"></view>
+          <view class="blk b2"></view>
+          <view class="blk b3"></view>
+          <view class="blk b4"></view>
+        </view>
+      </view>
+      <text class="card-name">{{item.name}}</text>
+      <text class="card-desc">{{item.desc}}</text>
+      <view class="card-bottom">
+        <view class="card-best">
+          <text class="card-best-score">{{item.best}}</text>
+          <text class="card-best-label">最佳成绩</text>
+        </view>
+        <view class="card-go">开始</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="foot">
+    <view class="avg">
+      <text class="avg-label">综合平均分：</text>
+      <text class="avg-score">{{avg}}</text>
+    </view>
+  </view>
+</view>

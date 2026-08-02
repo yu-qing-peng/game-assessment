@@ -1,0 +1,30 @@
+<view class="page tech-bg">
+  <view class="hud">
+    <view class="btn-back" bindtap="goBack">← 返回</view>
+    <view class="hud-item"><text class="hud-label">剩余</text><text class="hud-value">{{time}}s</text></view>
+    <view class="hud-item"><text class="hud-label">命中</text><text class="hud-value good">{{hits}}</text></view>
+    <view class="hud-item"><text class="hud-label">漏点</text><text class="hud-value bad">{{miss}}</text></view>
+    <view class="hud-item"><text class="hud-label">命中率</text><text class="hud-value">{{hitRate}}%</text></view>
+    <view class="hud-item"><text class="hud-label">均反应</text><text class="hud-value">{{avgTime}}ms</text></view>
+    <view class="hud-item"><text class="hud-label">精准</text><text class="hud-value good">{{acc}}%</text></view>
+  </view>
+
+  <canvas type="2d" id="game" class="game-canvas {{(state==='countdown' || state==='playing') ? '' : 'inert'}}" disable-scroll="{{true}}" bindtouchstart="onTap"></canvas>
+
+  <view class="overlay" wx:if="{{state==='ready'}}">
+    <view class="overlay-box panel">
+      <text class="overlay-title">第三关 · 精准点击</text>
+      <text class="overlay-desc">十字准星目标随机出现，随游戏推进更小更快\n点击越靠近准星中心，得分越高\n30 秒倒计时结束自动结算</text>
+      <view class="btn-primary btn-start" bindtap="startGame">开始挑战</view>
+    </view>
+  </view>
+
+  <view class="overlay" wx:if="{{state==='over'}}">
+    <view class="overlay-box panel">
+      <text class="overlay-title">本关完成</text>
+      <text class="overlay-score">{{finalScore}}</text>
+      <view class="btn-primary btn-sm" bindtap="toResult">查看成绩</view>
+      <view class="btn-ghost btn-sm" bindtap="doBack">返回首页</view>
+    </view>
+  </view>
+</view>

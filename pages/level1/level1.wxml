@@ -1,0 +1,44 @@
+<view class="page tech-bg">
+  <view class="hud">
+    <view class="btn-back" bindtap="goBack">← 返回</view>
+    <view class="hud-item"><text class="hud-label">得分</text><text class="hud-value">{{score}}</text></view>
+    <view class="hud-item"><text class="hud-label">成功</text><text class="hud-value good">{{success}}</text></view>
+    <view class="hud-item"><text class="hud-label">失误</text><text class="hud-value bad">{{fail}}</text></view>
+    <view class="hud-item"><text class="hud-label">完成率</text><text class="hud-value">{{rate}}%</text></view>
+    <view class="hud-item"><text class="hud-label">均反应</text><text class="hud-value">{{avgTime}}ms</text></view>
+    <view class="hud-item"><text class="hud-label">剩余</text><text class="hud-value">{{remain}}</text></view>
+  </view>
+
+  <canvas type="2d" id="game" class="game-canvas {{(state==='countdown' || state==='playing') ? '' : 'inert'}}" disable-scroll="{{true}}"
+    bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd" bindtouchcancel="onTouchEnd"></canvas>
+
+  <view class="btn-mute btn-pause" wx:if="{{state==='playing'}}" bindtap="togglePause">暂停</view>
+
+  <view class="side-hint side-left" wx:if="{{state==='playing' && showHints}}">左手区 · 左右移动</view>
+  <view class="side-hint side-right" wx:if="{{state==='playing' && showHints}}">右手区 · 上下移动</view>
+
+  <view class="overlay" wx:if="{{state==='ready'}}">
+    <view class="overlay-box panel">
+      <text class="overlay-title">第一关 · 左右手协调</text>
+      <text class="overlay-desc">左手拖动左侧平台【左右移动】接住下落的方块\n右手拖动右侧平台【上下移动】接住向右的方块\n共 40 个落物，双手同步操作！</text>
+      <view class="btn-primary btn-start" bindtap="startGame">开始挑战</view>
+    </view>
+  </view>
+
+  <view class="overlay" wx:if="{{state==='paused'}}">
+    <view class="overlay-box panel panel-solid">
+      <text class="overlay-title">游戏已暂停</text>
+      <view class="btn-primary btn-sm" bindtap="resumeGame">继续游戏</view>
+      <view class="btn-ghost btn-sm" bindtap="doBack">返回首页</view>
+    </view>
+  </view>
+
+  <view class="overlay" wx:if="{{state==='over'}}">
+    <view class="overlay-box panel">
+      <text class="overlay-title">本关完成</text>
+      <text class="overlay-score">{{finalScore}}</text>
+      <view class="btn-primary btn-sm" bindtap="toResult">查看成绩</view>
+      <view class="btn-ghost btn-sm" bindtap="doBack">返回首页</view>
+    </view>
+  </view>
+</view>

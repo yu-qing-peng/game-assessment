@@ -1,0 +1,42 @@
+<view class="page tech-bg result-page">
+  <view class="result-panel panel">
+    <view class="result-head">
+      <text class="level-name">{{levelName}}</text>
+      <view class="stars">
+        <text wx:for="{{starArr}}" wx:key="*this" class="star {{index < starFilled ? 'on' : ''}}">★</text>
+      </view>
+    </view>
+
+    <view class="score-wrap">
+      <view class="score-info">
+        <text class="score-label">本关得分</text>
+        <view class="score-line">
+          <text class="score-value">{{score}}</text>
+          <text class="grade {{gradeClass}}">{{grade}}</text>
+        </view>
+      </view>
+      <view class="best-wrap">
+        <text class="new-record" wx:if="{{isNewRecord}}">新纪录！</text>
+        <text class="best-label">历史最佳</text>
+        <text class="best-value">{{best}}</text>
+      </view>
+    </view>
+
+    <view class="metrics">
+      <view class="metric" wx:for="{{metrics}}" wx:key="label">
+        <view class="metric-row">
+          <text class="metric-label">{{item.label}}</text>
+          <text class="metric-value">{{item.text}}</text>
+        </view>
+        <view class="bar">
+          <view class="bar-fill" style="width:{{item.percent}}%"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="btns">
+      <view class="btn-primary btn-sm" bindtap="done">完成</view>
+      <view class="btn-ghost btn-sm" bindtap="retry">再来一次</view>
+    </view>
+  </view>
+</view>
