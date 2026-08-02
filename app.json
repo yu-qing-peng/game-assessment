@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/level1/level1",
+    "pages/level2/level2",
+    "pages/level3/level3",
+    "pages/result/result"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "pageOrientation": "landscape",
+    "navigationBarBackgroundColor": "#070b16",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "职业游戏测评",
+    "backgroundColor": "#070b16"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
